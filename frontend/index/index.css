@@ -1,0 +1,35 @@
+#login-box {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    flex-direction: column;
+    align-content: center;
+}
+
+#login-nickname {
+    width: 180px;
+    height: 40px;
+    background-color: snow;
+    color: black;
+    border: 1.5px solid grey;
+    border-radius: 5px;
+}
+
+#login-password {
+    width: 180px;
+    height: 40px;
+    background-color: snow;
+    color: black;
+    border: 1.5px solid grey;
+    border-radius: 5px;
+}
+
+input::placeholder {
+    text-align: center;
+    font-size: medium;
+}
+
+input {
+    text-align: center;
+    font-size: x-large;
+}

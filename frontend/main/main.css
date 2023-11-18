@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+
+#guessing-text {
+    width: 180px;
+    height: 40px;
+    background-color: snow;
+    color: black;
+    border: 1.5px solid grey;
+    border-radius: 5px;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: large;
+}
+
+input::placeholder {
+    text-align: center;
+    font-size: medium;
+}
+
+input {
+    text-align: center;
+    font-size: x-large;
+}
+
+#wordDisplay {
+    font-family: 'Noto Sans KR', sans-serif;
+    color: black;
+    font-size: x-large;
+}
+
+#guessed-alphabets {
+    font-size: x-large;
+    text-align: center;
+    margin-left: 50px;
+    margin-right: 50px;
+    /* font-weight: bolder; */
+}
+
+#final {
+    font-size: xx-large;
+    color: dodgerblue;
+    font-size: medium;
+}
+#guessing-underscore {
+    font-family: 'Noto Sans KR', sans-serif;
+    color: black;
+    font-size: large;
+    font-weight: bolder;
+    /* text-transform: capitalize; */
+}
+#previous-score {
+    text-align : right;
+    color: dodgerblue;
+    padding-right: 20px;
+}

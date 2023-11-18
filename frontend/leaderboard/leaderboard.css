@@ -1,0 +1,66 @@
+#table-container {
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+table {
+    border-collapse: collapse;
+    flex-grow: 1;
+    margin: 30px;
+}
+
+th,
+td {
+    padding: 12px;
+    border: 0px solid snow;
+    text-align: center;
+}
+
+th {
+    background-color: black;
+    color: snow;
+}
+
+/* tr:nth-child(even) {
+    background-color: #555;
+} */
+
+.rank-default {
+    color: black;
+}
+
+.rank-default td {
+    color: black;
+}
+
+.rank-default td:nth-child(2) {
+    color: dodgerblue;
+}
+
+.rank-myrank {
+    background-color: #90FF1E;
+}
+
+.rank-myrank td {
+    color: black;
+}
+
+.rank-page-nav,
+.rank-page-nav-active {
+    margin: 10px;
+    cursor: pointer;
+}
+
+.rank-page-nav-active {
+    font-size: 1.3rem;
+}
+
+#first,
+#prev,
+#next,
+#last {
+    margin: 2px;
+    cursor: pointer;
+}

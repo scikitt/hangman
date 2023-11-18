@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>행맨</title>
+    <link rel="stylesheet" href="../global.css" />
+    <link rel="stylesheet" href="./main.css" />
+  </head>
+
+  <body>
+    <div id="title">
+      <h1>행맨 게임</h1>
+    </div>
+    <div id="previous-score"></div>
+    <img id="hangman" src="../imgs/complete.png" width="300" />
+    <div id="notice"></div>
+    <div id="guessing-underscore"></div>
+    <div id="guessing-box">
+      <input
+        type="text"
+        id="guessing-text"
+        placeholder="알파벳을 입력해 주세요."
+        maxlength="1"
+        oninput="onlyEnglish(this)"
+        autofocus
+      />
+      <button id="guessButton" onclick="guessingEvent(event)">입력</button>
+    </div>
+    <br />
+    <div id="guessed-alphabets"></div>
+    <div id="final"></div>
+  </body>
+  <script src="../global.js"></script>
+  <script src="./main.js"></script>
+</html>
