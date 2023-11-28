@@ -45,7 +45,7 @@ const changeImg = (leftLife) => {
 
 const initGuessingEvent = async () => {
     document.getElementById("previous-score").innerHTML = `
-        ${localStorage.getItem("user_name")}님의 최고 점수: ${localStorage.getItem("previous_score")}
+        ${localStorage.getItem("user_name")}님의 최고 점수: ${localStorage.getItem("previous_score")}점
     `;
     document.getElementById("guessing-text").addEventListener("keyup", async (event) => {
         if (event.key === "Enter") {
@@ -178,7 +178,7 @@ const restart = async (user_name) => {
     setLocalItem("leftLife", 7);
     setLocalItem("startTime", toLocalISOString(new Date()));
     setLocalItem("user_name", user_name);
-    setLocalItem("previous_score", localStorage.getItem("previous_score"));
+    setLocalItem("previous_score", localStorage.getItem("score"));
     location.href = "../main/main.html";
 };
 

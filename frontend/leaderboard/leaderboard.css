@@ -4,11 +4,16 @@
     flex-direction: row;
     justify-content: center;
 }
-
+#user-rank-container {
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
 table {
     border-collapse: collapse;
     flex-grow: 1;
-    margin: 30px;
+    margin: 10px;
 }
 
 th,

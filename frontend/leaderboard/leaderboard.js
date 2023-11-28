@@ -6,7 +6,6 @@ const leaderboard = async (page = 1, per_page = 10) => {
     const data = await response.json();
     const users = data["results"];
     const totalPages = data["total_pages"];
-
     let leaderBoardInnerHtml = `
         <tr>
             <th>순위</th>
@@ -14,6 +13,7 @@ const leaderboard = async (page = 1, per_page = 10) => {
             <th>점수</th>
         </tr>
     `;
+
 
     // 1 ~ 5 : page 1 / per_page 5 => 5 
     // 6 ~ 10 : page 2 / per_page 5 => 10
@@ -27,10 +27,33 @@ const leaderboard = async (page = 1, per_page = 10) => {
                 <td>${users[i]["user_name"]}</td>
                 <td>${users[i]["user_score"]}</td>
             </tr>
-        `;
+            `;
     };
     document.getElementById("leaderboard").innerHTML = leaderBoardInnerHtml;
     loadPageNav(page, totalPages);
+    userRanking();
+};
+
+const userRanking = async () => {
+    const currentUser = localStorage.getItem("user_name");
+    const response = await fetch(`${API_URL}/user-ranking/${currentUser}`, {
+        method: "GET",
+        headers: { "Content-Type": "application/json" },
+    });
+    const data = await response.json();
+
+    let userRank = `
+        <tr>
+            <th>${currentUser}님의 랭킹</th>
+            <th></th>
+        </tr>
+        <tr class= "rank-myrank">
+            <td>${data["id"]}위</td>
+            <td>${data["score"]}점</td>
+        </tr>
+    `;
+
+    document.getElementById("user-rank").innerHTML = userRank;
 };
 
 const loadPageNav = (currentPage, totalPages) => {
@@ -67,15 +90,15 @@ const loadPageNav = (currentPage, totalPages) => {
     document.getElementById("first").innerHTML = `<span onclick="leaderboard(1)">처음</span>`;
     document.getElementById("last").innerHTML = `<span onclick="leaderboard(${totalPages})">마지막</span>`;
     if (currentPage > 1) {
-        document.getElementById("prev").innerHTML = `<span onclick="leaderboard(${currentPage - 1})">이전</span>`;
+        document.getElementById("prev").innerHTML = `<span onclick="leaderboard(${currentPage - 1})"><</span>`;
     } else {
-        document.getElementById("prev").innerHTML = "이전";
+        document.getElementById("prev").innerHTML = "<";
     };
 
     if (currentPage < totalPages) {
-        document.getElementById("next").innerHTML = `<span onclick="leaderboard(${currentPage + 1})">이후</span>`
+        document.getElementById("next").innerHTML = `<span onclick="leaderboard(${currentPage + 1})">></span>`
     } else {
-        document.getElementById("next").innerHTML = "이후";
+        document.getElementById("next").innerHTML = ">";
     };
 };
 
@@ -102,7 +125,7 @@ const restart = async (user_name) => {
     setLocalItem("leftLife", 7);
     setLocalItem("startTime", toLocalISOString(new Date()));
     setLocalItem("user_name", user_name);
-    setLocalItem("previous_score", localStorage.getItem("previous_score"));
+    setLocalItem("previous_score", localStorage.getItem("score"));
     location.href = "../main/main.html";
 };
 

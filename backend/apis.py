@@ -221,6 +221,19 @@ def get_leaderboard():
     return jsonify(response), 200
 
 
+@blueprint.route("/user-ranking/<nickname>", methods=["GET"])
+def get_user_ranking(nickname: str):
+    # find target user's ranking
+    target_user = _get_user_by_nickname(nickname)
+    response = {
+        "id": target_user.id,
+        "nickname": target_user.user_name,
+        "score": target_user.user_score,
+    }
+
+    return jsonify(response), 200
+
+
 @blueprint.route("/ping", methods=["GET"])
 def ping():
     """

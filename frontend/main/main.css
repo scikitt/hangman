@@ -52,3 +52,7 @@ input {
     color: dodgerblue;
     padding-right: 20px;
 }
+
+#hangman {
+    margin: 10px;
+}
