@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>행맨 하는 중</title>
+    <link rel="stylesheet" href="./main.css" />
+</head>
+<body>
+    <div id="title"></div>
+    <img id="hangman" width="300" />
+    <div id="notice"></div>
+    <div id="underscore"></div>
+    <div id="guess-div">
+        <input
+        type="text"
+        id="guess-text"
+        placeholder="알파벳을 입력하세요"
+        maxlength="1"
+        oninput="onlyEnglish(this)"
+        autofocus
+        />
+        <button id="guess-button">입력</button>
+    </div>
+    <div id="alphabet">
+        <button id="a">a</button>
+        <button id="b">b</button>
+        <button id="c">c</button>
+        <button id="d">d</button>
+        <button id="e">e</button>
+        <button id="f">f</button>
+        <button id="g">g</button>
+        <button id="h">h</button>
+        <button id="i">i</button>
+        <button id="j">j</button>
+        <button id="k">k</button>
+        <button id="l">l</button>
+        <button id="m">m</button>
+        <button id="n">n</button>
+        <button id="o">o</button>
+        <button id="p">p</button>
+        <button id="q">q</button>
+        <button id="r">r</button>
+        <button id="s">s</button>
+        <button id="t">t</button>
+        <button id="u">u</button>
+        <button id="v">v</button>
+        <button id="w">w</button>
+        <button id="x">x</button>
+        <button id="y">y</button>
+        <button id="z">z</button>
+    </div>
+    <div id="guessed-word"></div>
+    <div id="finish"></div>
+    <div id="end-score"></div>
+    <div id="buttons"></div>
+</body>
+<script src="./main.js"></script>
+</html>
