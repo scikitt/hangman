@@ -6,6 +6,7 @@ COPY ./backend /Users/ssd/Desktop/Hangman/backend
 COPY ./frontend /Users/ssd/Desktop/Hangman/frontend
 COPY .requirements.txt /Users/ssd/Desktop/Hangman/backend/requirements.txt
 
+RUN apt-get update && apt-get install -y python3-pip
 RUN pip install --upgrade pip
 
 RUN pip install torch torchvision opencv-python
@@ -18,4 +19,4 @@ ENV IMAGE_URL "/storage/images"
 
 EXPOSE 5000
 
-CMD ["flask", "run", "-h", "0.0.0.0"]
+CMD ["python3". "flask", "run", "-h", "0.0.0.0", "app.py"]
