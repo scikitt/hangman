@@ -1,16 +1,16 @@
 FROM python:3.11.2
 
-WORKDIR /Users/ssd/Desktop/Hangman/
+WORKDIR /usr/src/
 
-COPY ./backend /Users/ssd/Desktop/Hangman/backend
-COPY ./frontend /Users/ssd/Desktop/Hangman/frontend
-COPY .requirements.txt /Users/ssd/Desktop/Hangman/backend/requirements.txt
+COPY ./backend /usr/src/backend
+COPY ./frontend /usr/src/frontend
+COPY ./requirements.txt /usr/src/backend/requirements.txt
 
 RUN apt-get update && apt-get install -y python3-pip
 RUN pip install --upgrade pip
 
 RUN pip install torch torchvision opencv-python
-RUN pip install -r requirements.txt
+RUN pip install -r /usr/src/backend/requirements.txt
 
 RUN echo "building..."
 
