@@ -1,6 +1,6 @@
 runtime: python39  # 사용하는 Python 버전에 따라 변경
 instance_class: F2
-entrypoint: gunicorn -c gunicorn_config.py app:app  # main.py 파일에 있는 Flask 앱을 실행
+entrypoint: gunicorn -b :5000 -w 4 app:app  # main.py 파일에 있는 Flask 앱을 실행
 
 env_variables:
   FLASK_ENV: "production"

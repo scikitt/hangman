@@ -11,7 +11,7 @@ from apis import blueprint
 def create_app():
     app = Flask("hangman-app")
     Swagger(app)
-    app.config["SQLALCHEMY_DATABASE_URI"] = "mysql://database:K19712492Sj*@34.64.32.1:5000/hangman-data"
+    app.config["SQLALCHEMY_DATABASE_URI"] = "mysql://database:K19712492Sj*@34.64.32.1:3306/hangman-data"
     CORS(app)
 
     limiter = Limiter(
@@ -33,4 +33,4 @@ if __name__ == "__main__":
     app = create_app()
     with app.app_context():
         db.create_all()
-    app.run(debug=True, port=5000)
+    app.run(debug=False, port=5000)
