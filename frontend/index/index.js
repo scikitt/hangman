@@ -12,7 +12,7 @@ const initLogin = async () => {
         document.getElementById("notice").innerHTML = "핸드폰 번호 뒷자리를 입력하세요";
         document.getElementById("user-number").value = "";
     } else {
-        const response = await fetch("http://127.0.0.1:5000/login", {
+        const response = await fetch("https://hangman-id.ue.r.appspot.com/login", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
