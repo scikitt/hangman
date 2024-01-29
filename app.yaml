@@ -1,4 +1,4 @@
-runtime: python 3.11.2  # 사용하는 Python 버전에 따라 변경
+runtime: python39  # 사용하는 Python 버전에 따라 변경
 instance_class: F2
 entrypoint: gunicorn -b :$PORT app.py:blueprint  # main.py 파일에 있는 Flask 앱을 실행
 
