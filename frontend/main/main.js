@@ -83,7 +83,7 @@ const guessWord = async (inputText) => {
     console.log(guessWordList);
     document.getElementById("guessed-word").innerHTML = guessWordList.join(", ");
 
-    const response = await fetch("https://hangman-id.ue.r.appspot.com/guess", {
+    const response = await fetch("http://hangman-id.ue.r.appspot.com/guess", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -141,7 +141,7 @@ const checkWin = async () => {
 };
 
 const initScore = async (isWin, opportunity, textLength) => {
-    const response = await fetch("https://hangman-id.ue.r.appspot.com/score", {
+    const response = await fetch("http://hangman-id.ue.r.appspot.com/score", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -160,7 +160,7 @@ const initScore = async (isWin, opportunity, textLength) => {
 };
 
 const initWord = async () => {
-    const response = await fetch("https://hangman-id.ue.r.appspot.com/word", {
+    const response = await fetch("http://hangman-id.ue.r.appspot.com/word", {
         method: "GET",
         headers: { "Content-Type": "application/json" },
     });
