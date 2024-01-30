@@ -83,7 +83,7 @@ const guessWord = async (inputText) => {
     console.log(guessWordList);
     document.getElementById("guessed-word").innerHTML = guessWordList.join(", ");
 
-    const response = await fetch("http://34.22.96.247:5000/guess", {
+    const response = await fetch("http://34.22.96.247/guess", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -141,7 +141,7 @@ const checkWin = async () => {
 };
 
 const initScore = async (isWin, opportunity, textLength) => {
-    const response = await fetch("http://34.22.96.247:5000/score", {
+    const response = await fetch("http://34.22.96.247/score", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -160,7 +160,7 @@ const initScore = async (isWin, opportunity, textLength) => {
 };
 
 const initWord = async () => {
-    const response = await fetch("http://34.22.96.247:5000/word", {
+    const response = await fetch("http://34.22.96.247/word", {
         method: "GET",
         headers: { "Content-Type": "application/json" },
     });
