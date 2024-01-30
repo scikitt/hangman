@@ -8,7 +8,7 @@ from models import User, EncodedWord
 from db import db
 
 
-blueprint = Blueprint("hangman_api", __name__)
+blueprint = Blueprint("hangman_api", __name__, url_prefix="/api")
 
 def confirm_user_info(user_name: str, user_number: str):
     target_user = None
