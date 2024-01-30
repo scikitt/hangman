@@ -16,21 +16,3 @@ handlers:
 
 - url: /.*
   script: auto
-
-  
-
-spec:
-  template:
-    metadata:
-      labels:
-        client.knative.dev/nonce: 0cc8bb11-7447-4f83-8e58-8780470b0e00
-        run.googleapis.com/startupProbeType: Default
-      annotations:
-        run.googleapis.com/client-name: cloud-console
-        run.googleapis.com/cloudsql-instances: 'hangman-id:asia-northeast3:database'
-        run.googleapis.com/execution-environment: gen2
-        autoscaling.knative.dev/maxScale: '100'
-        run.googleapis.com/startup-cpu-boost: 'true'
-  traffic:
-  - percent: 100
-    latestRevision: true
