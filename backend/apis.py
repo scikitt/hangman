@@ -1,8 +1,7 @@
 import uuid
-import os
 from typing import Union, Tuple
 
-from flask import request, jsonify, Blueprint
+from flask import request, jsonify, Blueprint, render_template
 from faker import Faker
 
 from models import User, EncodedWord
@@ -48,6 +47,10 @@ def generate_target_word() -> Tuple[uuid.UUID, int]:
 def find_decoded_word(target_uuid: uuid.UUID) -> str:
     target_word: EncodedWord = EncodedWord.query.filter_by(uuid_id=target_uuid).first()
     return target_word.word
+
+@blueprint.route("/", methods=["GET"])
+def init():
+    return render_template("../frontend/index/index.html")
 
 @blueprint.route("/login", methods=["POST"])
 def initLogin():
@@ -145,3 +148,7 @@ def get_user_ranking(user_name: str):
         }
     }
     return jsonify(response), 200
+
+@blueprint.route("/ping", methods=["GET"])
+def ping():
+    return {"message": "ok"}
