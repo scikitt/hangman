@@ -83,7 +83,7 @@ const guessWord = async (inputText) => {
     console.log(guessWordList);
     document.getElementById("guessed-word").innerHTML = guessWordList.join(", ");
 
-    const response = await fetch("http://localhost:5000/guess", {
+    const response = await fetch("http://34.22.96.247:5000/guess", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -141,7 +141,7 @@ const checkWin = async () => {
 };
 
 const initScore = async (isWin, opportunity, textLength) => {
-    const response = await fetch("http://localhost:5000/score", {
+    const response = await fetch("http://34.22.96.247:5000/score", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -160,7 +160,7 @@ const initScore = async (isWin, opportunity, textLength) => {
 };
 
 const initWord = async () => {
-    const response = await fetch("http://localhost:5000/word", {
+    const response = await fetch("http://34.22.96.247:5000/word", {
         method: "GET",
         headers: { "Content-Type": "application/json" },
     });
@@ -196,7 +196,7 @@ const afterFinish = () => {
     <button onclick="restart('${user_name}')">다시 하기</button>
     <button onclick="location.href='../leaderboard/leaderboard.html'">랭킹 보기</button>`
 };
-
+s
 const guessWordList = [];
 const init = async () => {
     await initWord();
