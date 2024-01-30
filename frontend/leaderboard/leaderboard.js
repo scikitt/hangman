@@ -87,7 +87,7 @@ const restart = async (user_name) => {
     await initWord();
     setLocalItem("opportunity", 7);
     setLocalItem("user_name", user_name);
-    location.href = "../main/main.html";
+    location.href = "/main/main.html";
 };
 
 const initWord = async () => {
@@ -103,7 +103,7 @@ const initWord = async () => {
 const init = () => {
     document.getElementById("buttons").innerHTML = `
         <button onclick="restart('${localStorage.getItem("user_name")}')">행맨 다시 하기</button>
-        <button onclick="location.href='../index/index.html'">처음으로</button>
+        <button onclick="location.href='/index/index.html'">처음으로</button>
     `;
     leaderboard();
 };

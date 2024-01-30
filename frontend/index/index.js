@@ -36,7 +36,7 @@ const initLogin = async () => {
         }
         setLocalItem("user_name", data.user_name);
         setLocalItem("opportunity", 7);
-        location.href = "../main/main.html";
+        location.href = "/main/main.html";
     }
 };
 

@@ -8,7 +8,7 @@ const setLocalItem = (key, item) => {
 };
 
 const initDisplay = async () => {
-    document.getElementById("hangman").src = "../imgs/gallows.png";
+    document.getElementById("hangman").src = "/imgs/gallows.png";
     const underscore = "＿ ".repeat(Number(localStorage.getItem("target_word_length")));
     document.getElementById("title").innerHTML = `
     ${localStorage.getItem("user_name")}님 행맨 하는 중...
@@ -18,14 +18,14 @@ const initDisplay = async () => {
 
 const changeImgs = (opportunity) => {
     const imgList = [
-        "../imgs/gallows.png",
-        "../imgs/hanging_rope.gif",
-        "../imgs/head.gif",
-        "../imgs/body.gif",
-        "../imgs/left_hand.gif",
-        "../imgs/right_hand.gif",
-        "../imgs/left_leg.gif",
-        "../imgs/complete.png"
+        "/imgs/gallows.png",
+        "/imgs/hanging_rope.gif",
+        "/imgs/head.gif",
+        "/imgs/body.gif",
+        "/imgs/left_hand.gif",
+        "/imgs/right_hand.gif",
+        "/imgs/left_leg.gif",
+        "/imgs/complete.png"
     ];
     document.getElementById("hangman").src = imgList[7 - opportunity];
 };
@@ -179,7 +179,7 @@ const restart = async (user_name) => {
     await initWord();
     setLocalItem("user_name", user_name);
     setLocalItem("opportunity", 7);
-    location.href = "../main/main.html";
+    location.href = "/main/main.html";
 };
 
 const afterFinish = () => {
@@ -194,7 +194,7 @@ const afterFinish = () => {
     `;
     document.getElementById("buttons").innerHTML = `
     <button onclick="restart('${user_name}')">다시 하기</button>
-    <button onclick="location.href='../leaderboard/leaderboard.html'">랭킹 보기</button>`
+    <button onclick="location.href='/leaderboard/leaderboard.html'">랭킹 보기</button>`
 };
 s
 const guessWordList = [];
