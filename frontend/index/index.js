@@ -11,7 +11,7 @@ const initLogin = async () => {
     } else if (userNumber === "") {
         document.getElementById("notice").innerHTML = "핸드폰 번호 뒷자리를 입력하세요";
         document.getElementById("user-number").value = "";
-    } else if (userNumber.length < 4) {
+    } else if (userNumber.length != 4) {
         document.getElementById("notice").innerHTML = "핸드폰 번호 네 자리를 입력하세요";
     } else {
         const response = await fetch("https://hangman-id.du.r.appspot.com/login", {
