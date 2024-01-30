@@ -1,5 +1,5 @@
 const leaderboard = async (page = 1, per_page = 10) => {
-    const response = await fetch(`http://34.22.96.247/leaderboard?page=${page}&per_page=${per_page}`, {
+    const response = await fetch(`http://34.22.96.247:5000/leaderboard?page=${page}&per_page=${per_page}`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json"
@@ -34,7 +34,7 @@ const leaderboard = async (page = 1, per_page = 10) => {
 
 const userRanking = async () => {
     const currentUser = localStorage.getItem("user_name");
-    const response = await fetch(`http://34.22.96.247/user-ranking/${currentUser}`, {
+    const response = await fetch(`http://34.22.96.247:5000/user-ranking/${currentUser}`, {
         method: "GET",
         headers: { "Content-Type": "application/json" },
     });
@@ -91,7 +91,7 @@ const restart = async (user_name) => {
 };
 
 const initWord = async () => {
-    const response = await fetch("http://34.22.96.247/word", {
+    const response = await fetch("http://34.22.96.247:5000/word", {
         method: "GET",
         headers: { "Content-Type": "application/json" },
     });
