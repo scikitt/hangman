@@ -15,19 +15,19 @@ handlers:
   static_files: frontend/index/index.html
   upload: frontend/index/index.html
 
-- url: /index
+- url: frontend/index
   static_files: frontend/index
   upload: frontend/index
 
-- url: /imgs
+- url: frontend/imgs
   static_files: frontend/imgs
   upload: frontend/imgs
 
-- url: /main
+- url: frontend/main
   static_files: frontend/main
   upload: frontend/main
 
-- url: /leaderboard
+- url: frontend/leaderboard
   static_files: frontend/leaderboard
   upload: frontend/leaderboard
 
