@@ -1,18 +1,78 @@
-runtime: python39  # 사용하는 Python 버전에 따라 변경
-instance_class: F2
-entrypoint: gunicorn -b :$PORT -w 4 app:blueprint  # main.py 파일에 있는 Flask 앱을 실행
+# runtime: python39  # 사용하는 Python 버전에 따라 변경
+# instance_class: F2
+# entrypoint: gunicorn -b :$PORT -w 4 app:blueprint  # main.py 파일에 있는 Flask 앱을 실행
 
-env_variables:
-  SQLALCHEMY_DATABASE_URI: "mysql://database:K19712492Sj*@34.64.32.1/hangman-data"
+# env_variables:
+#   SQLALCHEMY_DATABASE_URI: "mysql://database:K19712492Sj*@34.64.32.1/hangman-data"
 
-automatic_scaling:
-  target_cpu_utilization: 0.65
-  min_instances: 1
-  max_instances: 10
+# automatic_scaling:
+#   target_cpu_utilization: 0.65
+#   min_instances: 1
+#   max_instances: 10
 
-handlers:
-- url: /frontend
-  static_dir: frontend
+# handlers:
+# - url: /frontend
+#   static_dir: frontend
 
-- url: /.*
-  script: auto
+# - url: /.*
+#   script: auto
+
+  
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: hangman-deploy
+  namespace: '7709679750'
+  selfLink: /apis/serving.knative.dev/v1/namespaces/7709679750/services/hangman-deploy
+  uid: c858de85-b5d0-4e1f-9948-385691b9e24c
+  resourceVersion: AAYQKrpLoyc
+  generation: 4
+  creationTimestamp: '2024-01-30T14:19:24.493021Z'
+  labels:
+    managed-by: gcp-cloud-build-deploy-cloud-run
+    gcb-trigger-id: 30c4ac74-c910-4c8e-a778-970a9fa3815b
+    gcb-trigger-region: global
+    run.googleapis.com/satisfiesPzs: 'true'
+    cloud.googleapis.com/location: asia-northeast3
+  annotations:
+    run.googleapis.com/client-name: cloud-console
+    serving.knative.dev/creator: 124dd1@gmail.com
+    serving.knative.dev/lastModifier: 124dd1@gmail.com
+    run.googleapis.com/operation-id: 9c37d993-d198-4877-8e45-6f8428691d03
+    run.googleapis.com/ingress: all
+    run.googleapis.com/ingress-status: all
+spec:
+  template:
+    metadata:
+      labels:
+        client.knative.dev/nonce: 0cc8bb11-7447-4f83-8e58-8780470b0e00
+        run.googleapis.com/startupProbeType: Default
+      annotations:
+        run.googleapis.com/client-name: cloud-console
+        run.googleapis.com/cloudsql-instances: 'hangman-id:asia-northeast3:database'
+        run.googleapis.com/execution-environment: gen2
+        autoscaling.knative.dev/maxScale: '100'
+        run.googleapis.com/startup-cpu-boost: 'true'
+    spec:
+      containerConcurrency: 80
+      timeoutSeconds: 300
+      serviceAccountName: 7709679750-compute@developer.gserviceaccount.com
+      containers:
+      - name: placeholder-1
+        image: gcr.io/cloudrun/placeholder
+        ports:
+        - name: http1
+          containerPort: 5000
+        resources:
+          limits:
+            cpu: 1000m
+            memory: 2Gi
+        startupProbe:
+          timeoutSeconds: 240
+          periodSeconds: 240
+          failureThreshold: 1
+          tcpSocket:
+            port: 5000
+  traffic:
+  - percent: 100
+    latestRevision: true
