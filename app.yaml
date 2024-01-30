@@ -10,12 +10,18 @@ env_variables:
 handlers:
 - url: /frontend
   static_dir: frontend
+
 - url: /
   static_files: frontend/index/index.html
   upload: frontend/index/index.html
+
 - url: /index
   static_files: frontend/index
   upload: frontend/index
+
+- url: /imgs
+  static_files: frontend/imgs
+  upload: frontend/imgs
 
 - url: /main
   static_files: frontend/main
@@ -24,6 +30,7 @@ handlers:
 - url: /leaderboard
   static_files: frontend/leaderboard
   upload: frontend/leaderboard
+  
 - url: /.*
   script: auto  # 모든 URL을 애플리케이션으로 라우팅
 
