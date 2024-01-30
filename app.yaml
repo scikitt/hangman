@@ -1,6 +1,6 @@
 runtime: python39  # Python 버전에 맞게 설정
 
-entrypoint: gunicorn -b :$PORT backend.app:create_app  # gunicorn을 사용하여 애플리케이션 실행
+entrypoint: gunicorn -b :$PORT backend:create_app  # gunicorn을 사용하여 애플리케이션 실행
 
 instance_class: F2  # 인스턴스 클래스 설정 (선택적)
 
@@ -11,9 +11,9 @@ handlers:
 - url: /frontend
   static_dir: frontend
 
-- url: /
-  static_files: frontend/index/index.html
-  upload: frontend/index/index.html
+# - url: /
+#   static_files: frontend/index/index.html
+#   upload: frontend/index/index.html
 
 - url: /.*
   script: auto  # 모든 URL을 애플리케이션으로 라우팅
