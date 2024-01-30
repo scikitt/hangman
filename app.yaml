@@ -14,16 +14,16 @@ handlers:
   static_files: frontend/index/index.html
   upload: frontend/index/index.html
 - url: /index
-  static_files: frontend/index/index.html
-  upload: frontend/index/index.html
+  static_files: frontend/index
+  upload: frontend/index
 
 - url: /main
-  static_files: frontend/main/main.html
-  upload: frontend/main/main.html
+  static_files: frontend/main
+  upload: frontend/main
 
 - url: /leaderboard
-  static_files: frontend/leaderboard/leaderboard.html
-  upload: frontend/leaderboard/leaderboard.html
+  static_files: frontend/leaderboard
+  upload: frontend/leaderboard
 - url: /.*
   script: auto  # 모든 URL을 애플리케이션으로 라우팅
 
