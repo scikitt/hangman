@@ -1,0 +1,6 @@
+indexes:
+- kind: User
+  properties:
+  - name: user_name
+  - name: user_number
+  - name: user_score

@@ -1,4 +1,4 @@
-runtime: python37
+runtime: python39
 
 entrypoint: gunicorn -b :$PORT app:app
 
@@ -11,8 +11,7 @@ automatic_scaling:
   max_instances: 10
 
 includes:
-- user.yaml
-- encoded_word.yaml
+- datastore-indexes.yaml
 
 handlers:
 - url: /frontend
