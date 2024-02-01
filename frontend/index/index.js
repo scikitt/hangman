@@ -14,7 +14,7 @@ const initLogin = async () => {
     } else if (userNumber.length != 4) {
         document.getElementById("notice").innerHTML = "핸드폰 번호는 네 자리여야 합니다";
     } else {
-        const response = await fetch("http://127.0.0.1:5000/login", {
+        const response = await fetch("https://hangman-id.du.r.appspot.com/login", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
