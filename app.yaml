@@ -10,9 +10,6 @@ automatic_scaling:
   min_instances: 1
   max_instances: 10
 
-includes:
-- datastore-indexes.yaml
-
 handlers:
 - url: /frontend
   static_dir: frontend/
