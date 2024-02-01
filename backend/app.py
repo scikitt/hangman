@@ -17,7 +17,7 @@ def create_app():
     limiter = Limiter(
         get_remote_address,
         app=app,
-        default_limits=["5 per seconds"],
+        default_limits=["5 per second"],
         storage_uri="memory://",
     )
     db.init_app(app)
