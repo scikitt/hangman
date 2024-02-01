@@ -13,13 +13,13 @@ def create_app():
     app = Flask("hangman-app")  # app은 어떤 변순가요? -> Flask라는 class의 instance
     Swagger(app)
 
-    # db_user = 'database'
-    # db_password = 'K19712492Sj'
-    # db_name = 'hangman-data'
-    # cloud_sql_connection_name = 'hangman-id'
+    db_user = 'database'
+    db_password = 'K19712492Sj'
+    db_name = 'hangman-data'
+    cloud_sql_connection_name = 'hangman-id'
 
     # SQLAlchemy 연결 URI 생성
-    uri = f"mysql+mysqldb://database:K19712492Sj@localhost/hangman-data?unix_socket=/cloudsql/hangman-id"
+    uri = f"mysql+mysqldb://{db_user}:{db_password}@/{db_name}?unix_socket=/cloudsql/{cloud_sql_connection_name}"
 
     app.config["SQLALCHEMY_DATABASE_URI"] = uri
     CORS(app)
@@ -41,4 +41,4 @@ def create_app():
 app = create_app()
 
 if __name__ == "__main__":
-    app.run(debug=True, port=5000)
+    app.run(host="0.0.0.0")
