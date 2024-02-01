@@ -1,0 +1,23 @@
+indexes:
+- kind: User
+  properties:
+  - name: user_name
+  - name: user_number
+  - name: user_score
+
+schema:
+- name: User
+  type: entity
+  properties:
+  - name: id
+    type: integer
+    primary_key: true
+    auto: true
+  - name: user_name
+    type: string
+    not_null: true
+  - name: user_number
+    type: string
+    not_null: true
+  - name: user_score
+    type: integer

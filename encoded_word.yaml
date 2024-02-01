@@ -1,0 +1,20 @@
+indexes:
+- kind: EncodedWord
+  properties:
+  - name: uuid_id
+
+schema:
+- name: EncodedWord
+  type: entity
+  properties:
+  - name: id
+    type: integer
+    primary_key: true
+    auto: true
+  - name: uuid_id
+    type: uuid
+    not_null: true
+    unique: true
+  - name: word
+    type: string
+    not_null: true

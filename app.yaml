@@ -1,0 +1,22 @@
+runtime: python37
+
+entrypoint: gunicorn -b :$PORT app:app
+
+env_variables:
+  SQLALCHEMY_DATABASE_URI: "mysql+mysqldb://database:K19712492Sj@/<hangman-data>?unix_socket=/cloudsql/hangman-id:asia-northeast3:database&charset=utf8"
+
+automatic_scaling:
+  target_cpu_utilization: 0.65
+  min_instances: 1
+  max_instances: 10
+
+includes:
+- user.yaml
+- encoded_word.yaml
+
+handlers:
+- url: /frontend
+  static_dir: frontend/
+
+- url: /.*
+  script: auto

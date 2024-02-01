@@ -1,7 +1,7 @@
 import uuid
 from typing import Union, Tuple
 
-from flask import request, jsonify, Blueprint, render_template
+from flask import request, jsonify, Blueprint
 from faker import Faker
 
 from models import User, EncodedWord
