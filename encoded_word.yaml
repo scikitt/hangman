@@ -1,4 +1,4 @@
-indexes:
+index:
 - kind: EncodedWord
   properties:
   - name: uuid_id
