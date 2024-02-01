@@ -1,5 +1,5 @@
 const leaderboard = async (page = 1, per_page = 10) => {
-    const response = await fetch(`https://hangman-id.du.r.appspot.com/leaderboard?page=${page}&per_page=${per_page}`, {
+    const response = await fetch(`http://127.0.0.1:5000/leaderboard?page=${page}&per_page=${per_page}`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json"
@@ -34,7 +34,7 @@ const leaderboard = async (page = 1, per_page = 10) => {
 
 const userRanking = async () => {
     const currentUser = localStorage.getItem("user_name");
-    const response = await fetch(`https://hangman-id.du.r.appspot.com/user-ranking/${currentUser}`, {
+    const response = await fetch(`http://127.0.0.1:5000/user-ranking/${currentUser}`, {
         method: "GET",
         headers: { "Content-Type": "application/json" },
     });
@@ -87,11 +87,11 @@ const restart = async (user_name) => {
     await initWord();
     setLocalItem("opportunity", 7);
     setLocalItem("user_name", user_name);
-    location.href = "/main/main.html";
+    location.href = "../main/main.html";
 };
 
 const initWord = async () => {
-    const response = await fetch("https://hangman-id.du.r.appspot.com/word", {
+    const response = await fetch("http://127.0.0.1:5000/word", {
         method: "GET",
         headers: { "Content-Type": "application/json" },
     });
@@ -103,7 +103,7 @@ const initWord = async () => {
 const init = () => {
     document.getElementById("buttons").innerHTML = `
         <button onclick="restart('${localStorage.getItem("user_name")}')">행맨 다시 하기</button>
-        <button onclick="location.href='/index/index.html'">처음으로</button>
+        <button onclick="location.href='../index/index.html'">처음으로</button>
     `;
     leaderboard();
 };

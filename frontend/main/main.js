@@ -8,7 +8,7 @@ const setLocalItem = (key, item) => {
 };
 
 const initDisplay = async () => {
-    document.getElementById("hangman").src = "/imgs/gallows.png";
+    document.getElementById("hangman").src = "../imgs/gallows.png";
     const underscore = "＿ ".repeat(Number(localStorage.getItem("target_word_length")));
     document.getElementById("title").innerHTML = `
     ${localStorage.getItem("user_name")}님 행맨 하는 중...
@@ -18,14 +18,14 @@ const initDisplay = async () => {
 
 const changeImgs = (opportunity) => {
     const imgList = [
-        "/imgs/gallows.png",
-        "/imgs/hanging_rope.gif",
-        "/imgs/head.gif",
-        "/imgs/body.gif",
-        "/imgs/left_hand.gif",
-        "/imgs/right_hand.gif",
-        "/imgs/left_leg.gif",
-        "/imgs/complete.png"
+        "../imgs/gallows.png",
+        "../imgs/hanging_rope.gif",
+        "../imgs/head.gif",
+        "../imgs/body.gif",
+        "../imgs/left_hand.gif",
+        "../imgs/right_hand.gif",
+        "../imgs/left_leg.gif",
+        "../imgs/complete.png"
     ];
     document.getElementById("hangman").src = imgList[7 - opportunity];
 };
@@ -83,7 +83,7 @@ const guessWord = async (inputText) => {
     console.log(guessWordList);
     document.getElementById("guessed-word").innerHTML = guessWordList.join(", ");
 
-    const response = await fetch("https://hangman-id.du.r.appspot.com/guess", {
+    const response = await fetch("http://127.0.0.1:5000/guess", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -141,7 +141,7 @@ const checkWin = async () => {
 };
 
 const initScore = async (isWin, opportunity, textLength) => {
-    const response = await fetch("https://hangman-id.du.r.appspot.com/score", {
+    const response = await fetch("http://127.0.0.1:5000/score", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -160,7 +160,7 @@ const initScore = async (isWin, opportunity, textLength) => {
 };
 
 const initWord = async () => {
-    const response = await fetch("https://hangman-id.du.r.appspot.com/word", {
+    const response = await fetch("http://127.0.0.1:5000/word", {
         method: "GET",
         headers: { "Content-Type": "application/json" },
     });
@@ -179,7 +179,7 @@ const restart = async (user_name) => {
     await initWord();
     setLocalItem("user_name", user_name);
     setLocalItem("opportunity", 7);
-    location.href = "/main/main.html";
+    location.href = "./main.html";
 };
 
 const afterFinish = () => {
@@ -194,7 +194,7 @@ const afterFinish = () => {
     `;
     document.getElementById("buttons").innerHTML = `
     <button onclick="restart('${user_name}')">다시 하기</button>
-    <button onclick="location.href='/leaderboard/leaderboard.html'">랭킹 보기</button>`
+    <button onclick="location.href='../leaderboard/leaderboard.html'">랭킹 보기</button>`
 };
 s
 const guessWordList = [];

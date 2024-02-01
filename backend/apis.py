@@ -1,14 +1,14 @@
 import uuid
 from typing import Union, Tuple
 
-from flask import request, jsonify, Blueprint
+from flask import request, jsonify, Blueprint, render_template
 from faker import Faker
 
 from models import User, EncodedWord
 from db import db
 
 
-blueprint = Blueprint("hangman_api", __name__, url_prefix="/api")
+blueprint = Blueprint("hangman_api", __name__)
 
 def confirm_user_info(user_name: str, user_number: str):
     target_user = None
