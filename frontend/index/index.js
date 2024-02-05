@@ -14,7 +14,7 @@ const initLogin = async () => {
     } else if (userNumber.length != 4) {
         document.getElementById("notice").innerHTML = "핸드폰 번호는 네 자리여야 합니다";
     } else {
-        const response = await fetch("scikit.pythonanywhere.com/login", {
+        const response = await fetch("http://127.0.0.1:5000/login", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -31,7 +31,7 @@ const initLogin = async () => {
             입력이 올바르지 않습니다`
         } else if (data["message"] === "wrong_number") {
             document.getElementById("notice").innerHTML = `
-            비밀번호가 일치하지 않습니다`
+            핸드폰 번호가 일치하지 않습니다`
             return;
         }
         setLocalItem("user_name", data.user_name);

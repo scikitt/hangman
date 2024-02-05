@@ -55,6 +55,10 @@ const guessFunction = async () => {
 };
 
 const initGuessButton = async () => {
+    const opportunity = Number(localStorage.getItem("opportunity"));
+        if (opportunity === 0) {
+            return;
+        }
     const alphabetButtons = document.querySelectorAll("#alphabet button");
         alphabetButtons.forEach(button => {
         button.addEventListener("click", function () {
@@ -79,11 +83,11 @@ const guessWord = async (inputText) => {
         guessInput.value = "";
         return;
     }
+    document.getElementById("notice").innerHTML = "";
     guessWordList.push(inputText);
-    console.log(guessWordList);
     document.getElementById("guessed-word").innerHTML = guessWordList.join(", ");
 
-    const response = await fetch("scikit.pythonanywhere.com/guess", {
+    const response = await fetch("http://127.0.0.1:5000/guess", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -141,7 +145,7 @@ const checkWin = async () => {
 };
 
 const initScore = async (isWin, opportunity, textLength) => {
-    const response = await fetch("scikit.pythonanywhere.com/score", {
+    const response = await fetch("http://127.0.0.1:5000/score", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -160,7 +164,7 @@ const initScore = async (isWin, opportunity, textLength) => {
 };
 
 const initWord = async () => {
-    const response = await fetch("scikit.pythonanywhere.com/word", {
+    const response = await fetch("http://127.0.0.1:5000/word", {
         method: "GET",
         headers: { "Content-Type": "application/json" },
     });
@@ -196,7 +200,7 @@ const afterFinish = () => {
     <button onclick="restart('${user_name}')">다시 하기</button>
     <button onclick="location.href='../leaderboard/leaderboard.html'">랭킹 보기</button>`
 };
-s
+
 const guessWordList = [];
 const init = async () => {
     await initWord();

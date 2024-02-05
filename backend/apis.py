@@ -3,6 +3,7 @@ from typing import Union, Tuple
 
 from flask import request, jsonify, Blueprint, render_template
 from faker import Faker
+# from sqlalchemy import func, text
 
 from models import User, EncodedWord
 from db import db
@@ -26,9 +27,14 @@ def add_user_info(user_name: str, user_number: int):
     db.session.commit()
     return confirm_user_info(user_name, user_number)
     
-def update_user_info(user_name: str, score: int):
+def update_user_score(user_name: str, score: int):
     user = User.query.filter_by(user_name=user_name).first()
     user.user_score += score
+    db.session.commit()
+
+def update_user_rank(user_name: str, rank: int):
+    user = User.query.filter_by(user_name=user_name).first()
+    user.user_rank = rank
     db.session.commit()
 
 def generate_target_word() -> Tuple[uuid.UUID, int]:
@@ -49,7 +55,7 @@ def find_decoded_word(target_uuid: uuid.UUID) -> str:
     return target_word.word
 
 @blueprint.route("/", methods=["GET"])
-def init():
+def initIndex():
     return render_template("../frontend/index/index.html")
 
 @blueprint.route("/login", methods=["POST"])
@@ -110,7 +116,7 @@ def carculate_score():
     else:
         score = 0
     
-    update_user_info(user_name, score)
+    update_user_score(user_name, score)
     return {
         "score": int(score),
     }
@@ -121,6 +127,10 @@ def get_leaderboard():
     page = request.args.get("page", type=int, default=1)
     per_page = request.args.get("per_page", 10, type=int)
     paginated_data = ordered_data.paginate(page=page, per_page=per_page)
+
+    for idx, user in enumerate(paginated_data.items, start=(page - 1) * per_page + 1):
+        update_user_rank(user.user_name, idx)
+
     response = {
         "user_info": [
             {
@@ -128,6 +138,7 @@ def get_leaderboard():
                 "user_name": user.user_name,
                 "user_number": user.user_number,
                 "user_score": user.user_score,
+                "user_rank": user.user_rank,
             }
             for user in paginated_data.items
         ],
@@ -145,6 +156,7 @@ def get_user_ranking(user_name: str):
             "id": target_user.id,
             "user_name": target_user.user_name,
             "user_score": target_user.user_score,
+            "user_rank": target_user.user_rank,
         }
     }
     return jsonify(response), 200

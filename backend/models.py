@@ -9,6 +9,7 @@ class User(db.Model):
     user_name = db.Column(db.String(80), nullable=False)
     user_number = db.Column(db.String(120), nullable=False)
     user_score = db.Column(db.Integer)
+    user_rank = db.Column(db.Integer)
 
 
 class EncodedWord(db.Model):

@@ -9,16 +9,15 @@ from apis import blueprint
 
 
 def create_app():
-    app = Flask("hangman-app")  # app은 어떤 변순가요? -> Flask라는 class의 instance
+    app = Flask("hangman-app")
     Swagger(app)
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://scikit:9799dnPh7*@scikit.mysql.pythonanywhere-services.com/hangman-data'
-    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+    app.config["SQLALCHEMY_DATABASE_URI"] = "mysql://root:9799125ph@127.0.0.1:3306/Hangman"
     CORS(app)
 
     limiter = Limiter(
         get_remote_address,
         app=app,
-        default_limits=["5 per second"],
+        default_limits=["5 per seconds"],
         storage_uri="memory://",
     )
     db.init_app(app)
@@ -28,7 +27,6 @@ def create_app():
         db.create_all()
 
     return app
-
 app = create_app()
 
 if __name__ == "__main__":

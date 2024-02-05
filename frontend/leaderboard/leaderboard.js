@@ -1,5 +1,5 @@
 const leaderboard = async (page = 1, per_page = 10) => {
-    const response = await fetch(`scikit.pythonanywhere.com/leaderboard?page=${page}&per_page=${per_page}`, {
+    const response = await fetch(`http://127.0.0.1:5000/leaderboard?page=${page}&per_page=${per_page}`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json"
@@ -16,7 +16,6 @@ const leaderboard = async (page = 1, per_page = 10) => {
             <th>점수</th>
         </tr>
     `;
-
     const startRank = (page === 1) ? 0 : (page - 1) * per_page;
     for (let i = 0; i < users.length; i++) {
         leaderBoardInnerHtml += `
@@ -25,7 +24,8 @@ const leaderboard = async (page = 1, per_page = 10) => {
                 <td>${users[i]["user_name"]}</td>
                 <td>${users[i]["user_score"]}</td>
             </tr>
-            `;
+            
+        `;
     };
     document.getElementById("leaderboard").innerHTML = leaderBoardInnerHtml;
     loadPageNav(page, totalPages);
@@ -34,23 +34,18 @@ const leaderboard = async (page = 1, per_page = 10) => {
 
 const userRanking = async () => {
     const currentUser = localStorage.getItem("user_name");
-    const response = await fetch(`scikit.pythonanywhere.com/user-ranking/${currentUser}`, {
+    const response = await fetch(`http://127.0.0.1:5000/user-ranking/${currentUser}`, {
         method: "GET",
         headers: { "Content-Type": "application/json" },
     });
     const data = await response.json();
-
-    let userRank = `
-        <tr>
-            <th>${currentUser}님의 랭킹</th>
-            <th></th>
-        </tr>
-        <tr>
-            <td>${data["user_info"]["id"]}위</td>
-            <td>${data["user_info"]["user_score"]}점</td>
-        </tr>
-    `;
-
+        userRank = `
+            <tr>
+                <td>${currentUser}님: </td>
+                <td>${data["user_info"]["user_rank"]}위 </td>
+                <td>${data["user_info"]["user_score"]}점</td>
+            </tr>
+        `;
     document.getElementById("user-rank").innerHTML = userRank;
 };
 
@@ -91,7 +86,7 @@ const restart = async (user_name) => {
 };
 
 const initWord = async () => {
-    const response = await fetch("scikit.pythonanywhere.com/word", {
+    const response = await fetch("http://127.0.0.1:5000/word", {
         method: "GET",
         headers: { "Content-Type": "application/json" },
     });
