@@ -3,7 +3,6 @@ from typing import Union, Tuple
 
 from flask import request, jsonify, Blueprint, render_template
 from faker import Faker
-# from sqlalchemy import func, text
 
 from models import User, EncodedWord
 from db import db
