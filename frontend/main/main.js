@@ -1,3 +1,5 @@
+const API_SERVER = "http://3.38.7.91:8000";
+
 const onlyEnglish = (input) => {
     const englishOnly = input.value.replace(/[^a-z]/g, "");
     input.value = englishOnly;
@@ -56,6 +58,7 @@ const guessFunction = async () => {
 
 const initGuessButton = async () => {
     const opportunity = Number(localStorage.getItem("opportunity"));
+    console.log("opportunity : " + opportunity);
         if (opportunity === 0) {
             return;
         }
@@ -87,7 +90,7 @@ const guessWord = async (inputText) => {
     guessWordList.push(inputText);
     document.getElementById("guessed-word").innerHTML = guessWordList.join(", ");
 
-    const response = await fetch("http://127.0.0.1:5000/guess", {
+    const response = await fetch(`${API_SERVER}/guess`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -145,7 +148,7 @@ const checkWin = async () => {
 };
 
 const initScore = async (isWin, opportunity, textLength) => {
-    const response = await fetch("http://127.0.0.1:5000/score", {
+    const response = await fetch(`${API_SERVER}/score`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -164,7 +167,7 @@ const initScore = async (isWin, opportunity, textLength) => {
 };
 
 const initWord = async () => {
-    const response = await fetch("http://127.0.0.1:5000/word", {
+    const response = await fetch(`${API_SERVER}/word`, {
         method: "GET",
         headers: { "Content-Type": "application/json" },
     });

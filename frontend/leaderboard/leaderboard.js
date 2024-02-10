@@ -1,5 +1,7 @@
+const API_SERVER = "http://3.38.7.91:8000";
+
 const leaderboard = async (page = 1, per_page = 10) => {
-    const response = await fetch(`http://127.0.0.1:5000/leaderboard?page=${page}&per_page=${per_page}`, {
+    const response = await fetch(`${API_SERVER}/leaderboard?page=${page}&per_page=${per_page}`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json"
@@ -34,7 +36,7 @@ const leaderboard = async (page = 1, per_page = 10) => {
 
 const userRanking = async () => {
     const currentUser = localStorage.getItem("user_name");
-    const response = await fetch(`http://127.0.0.1:5000/user-ranking/${currentUser}`, {
+    const response = await fetch(`${API_SERVER}/user-ranking/${currentUser}`, {
         method: "GET",
         headers: { "Content-Type": "application/json" },
     });
@@ -86,7 +88,7 @@ const restart = async (user_name) => {
 };
 
 const initWord = async () => {
-    const response = await fetch("http://127.0.0.1:5000/word", {
+    const response = await fetch(`${API_SERVER}/word`, {
         method: "GET",
         headers: { "Content-Type": "application/json" },
     });
@@ -98,7 +100,7 @@ const initWord = async () => {
 const init = () => {
     document.getElementById("buttons").innerHTML = `
         <button onclick="restart('${localStorage.getItem("user_name")}')">행맨 다시 하기</button>
-        <button onclick="location.href='../index/index.html'">처음으로</button>
+        <button onclick="location.href='/'">처음으로</button>
     `;
     leaderboard();
 };

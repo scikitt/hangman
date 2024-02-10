@@ -11,7 +11,8 @@ from apis import blueprint
 def create_app():
     app = Flask("hangman-app")
     Swagger(app)
-    app.config["SQLALCHEMY_DATABASE_URI"] = "mysql://root:9799125ph@127.0.0.1:3306/Hangman"
+    app.config["SQLALCHEMY_DATABASE_URI"] = "mysql+pymysql://hangman:1997K-@127.0.0.1:3306/hangman"
+    #app.config["SQLALCHEMY_DATABASE_URI"] = "mysql://root:9799125ph@127.0.0.1:3306/Hangman"
     CORS(app)
 
     limiter = Limiter(

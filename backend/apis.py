@@ -55,7 +55,7 @@ def find_decoded_word(target_uuid: uuid.UUID) -> str:
 
 @blueprint.route("/", methods=["GET"])
 def initIndex():
-    return render_template("../frontend/index/index.html")
+    return render_template("../frontend/index.html")
 
 @blueprint.route("/login", methods=["POST"])
 def initLogin():
