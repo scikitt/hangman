@@ -1,3 +1,12 @@
 #alphabet button {
+    -moz-appearance:none; /* Firefox */
+    -webkit-appearance:none; /* Safari and Chrome */
+    appearance:none;
+    border-radius: 0;
+    border: 0px;
     padding: 5px 15px;
+    font-size: medium;
+}
+#underscore {
+    font-size: x-large;
 }

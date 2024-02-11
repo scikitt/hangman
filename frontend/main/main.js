@@ -180,6 +180,7 @@ const deleteDom = () => {
     document.getElementById("guess-div").remove();
     document.getElementById("guessed-word").remove();
     document.getElementById("notice").remove();
+    document.getElementById("alphabet").remove();
 };
 
 const restart = async (user_name) => {
@@ -189,10 +190,21 @@ const restart = async (user_name) => {
     location.href = "./main.html";
 };
 
-const afterFinish = () => {
+const afterFinish = async () => {
     const user_name = localStorage.getItem("user_name");
     const opportunity = Number(localStorage.getItem("opportunity"));
-    const result = opportunity === 0 ? "단어를 맞히지 못했습니다" : "단어를 맞혔습니다"
+    const response = await fetch(`${API_SERVER}/answer`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            encoded_word: localStorage.getItem("encoded_word"),
+        }),
+    });
+    const data = await response.json();
+    const answer = data["answer"];
+    const result = opportunity === 0 ? `단어를 맞히지 못했습니다<br>정답은${answer}입니다` : "단어를 맞혔습니다"
     document.getElementById("finish").innerHTML = `
         ${result}
     `;

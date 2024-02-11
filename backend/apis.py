@@ -102,6 +102,13 @@ def guess_word():
         "target_idx": target_idx,
     }
 
+@blueprint.route("/answer", methods=["GET"])
+def get_answer():
+    data = request.json
+    encoded_word = data["encoded_word"]
+    answer = find_decoded_word(encoded_word)
+    return answer
+
 @blueprint.route("/score", methods=["POST"])
 def carculate_score():
     data = request.json
